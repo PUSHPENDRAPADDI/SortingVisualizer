@@ -14,21 +14,22 @@ function App() {
   useEffect(() => {
     const arr = userInput?.split(',');
     const integerArray = arr?.filter(item => !isNaN(item) && Number.isInteger(parseFloat(item))).map(item => Number(item));
-    integerArray && integerArray.length > 0 && setArray(integerArray);
-  }, [userInput])
+    if (integerArray && integerArray.length > 0) setArray(integerArray);
+  }, [userInput]);
+
 
   const generateArray = (size = 30) => {
     if (isSorting) return;
     const newArray = Array.from({ length: size }, () =>
       Math.floor(Math.random() * 500)
     );
-    setUserInput('')
+    setUserInput('');
     setArray(newArray);
   };
 
   const startSort = (algorithm) => {
-    let animations = bubbleSort(array);
     if (isSorting) return;
+    let animations = [];
     setIsSorting(true);
     switch (algorithm) {
       case "bubbleSort":
@@ -60,9 +61,8 @@ function App() {
         setTimeout(() => {
           const [barOneIdx, newHeight] = animations[i];
           const barOne = bars[barOneIdx];
-
           barOne.style.height = `${newHeight}px`;
-          barOne.innerHTML = newHeight
+          barOne.innerHTML = newHeight;
         }, i * speed);
       }
     }

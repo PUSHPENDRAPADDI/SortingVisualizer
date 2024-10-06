@@ -14,12 +14,11 @@ const Controls = ({ generateArray, startSort, setSpeed, isSorting, userInput, se
             <button className="neu-button" onClick={() => generateArray(30)} disabled={isSorting}>
                 Generate New Array
             </button>
-            <button className="neu-button" onClick={() => startSort("bubbleSort")} disabled={isSorting}>
-                Bubble Sort
-            </button>
-            <button className="neu-button" onClick={() => startSort("mergeSort")} disabled={isSorting}>
-                Merge Sort
-            </button>
+            <select onChange={(e) => startSort(e.target.value)} disabled={isSorting} class="neumorphism-dropdown">
+                <option value="">Select Sorting Method</option>
+                <option value="bubbleSort">Bubble Sort</option>
+                <option value="mergeSort">Merge Sort</option>
+            </select>
             <label>
                 Speed:
                 <input

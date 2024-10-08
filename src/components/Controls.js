@@ -1,7 +1,7 @@
 import React from "react";
 import "./Controls.css";
 
-const Controls = ({ generateArray, startSort, setSpeed, isSorting, userInput, setUserInput }) => {
+const Controls = ({ generateArray, startSort, setSpeed, isSorting, userInput, setUserInput, reset }) => {
     return (
         <div className="controls-container">
             <div className="input-wrapper">
@@ -14,10 +14,14 @@ const Controls = ({ generateArray, startSort, setSpeed, isSorting, userInput, se
             <button className="neu-button" onClick={() => generateArray(30)} disabled={isSorting}>
                 Generate New Array
             </button>
-            <select onChange={(e) => startSort(e.target.value)} disabled={isSorting} class="neumorphism-dropdown">
+            <button className="neu-button" onClick={reset} disabled={isSorting}>
+                Reset
+            </button>
+            <select onChange={(e) => startSort(e.target.value)} disabled={isSorting} className="neumorphism-dropdown">
                 <option value="">Select Sorting Method</option>
                 <option value="bubbleSort">Bubble Sort</option>
                 <option value="mergeSort">Merge Sort</option>
+                <option value="selectionSort">SelectionSort Sort</option>
             </select>
             <label>
                 Speed:

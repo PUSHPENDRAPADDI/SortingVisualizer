@@ -4,6 +4,7 @@ import Controls from "./components/Controls";
 import { bubbleSort } from "./algorithms/BubbleSort";
 import { mergeSort } from "./algorithms/mergSort";
 import "./App.css";
+import { selectionSort } from "./algorithms/SelectionSort";
 
 function App() {
   const [array, setArray] = useState([]);
@@ -17,7 +18,6 @@ function App() {
     if (integerArray && integerArray.length > 0) setArray(integerArray);
   }, [userInput]);
 
-
   const generateArray = (size = 30) => {
     if (isSorting) return;
     const newArray = Array.from({ length: size }, () =>
@@ -26,7 +26,6 @@ function App() {
     setUserInput('');
     setArray(newArray);
   };
-
   const startSort = (algorithm) => {
     if (isSorting) return;
     let animations = [];
@@ -39,6 +38,10 @@ function App() {
       case "mergeSort":
         animations = mergeSort(array);
         animateMergeSorting(animations);
+        break;
+      case "selectionSort":
+        animations = selectionSort(array);
+        animateSelectionSorting(animations);
         break;
       default:
         break;
@@ -106,6 +109,38 @@ function App() {
           bars[j].style.backgroundColor = "green";
         }, j * speed);
       }
+    }, animations.length * speed);
+  };
+  const animateSelectionSorting = (animations) => {
+    const bars = document.getElementsByClassName("bar");
+    for (let i = 0; i < animations.length; i++) {
+      const [barOneIdx, barTwoIdx, swap] = animations[i];
+      const barOne = bars[barOneIdx];
+      const barTwo = bars[barTwoIdx];
+      setTimeout(() => {
+        barOne.style.backgroundColor = swap ? "red" : "yellow";
+        barTwo.style.backgroundColor = swap ? "red" : "yellow";
+        if (swap) {
+          const tempHeight = barOne.style.height;
+          barOne.style.height = barTwo.style.height;
+          barTwo.style.height = tempHeight;
+          const tempContent = barOne.innerHTML;
+          barOne.innerHTML = barTwo.innerHTML;
+          barTwo.innerHTML = tempContent;
+        }
+        setTimeout(() => {
+          barOne.style.backgroundColor = "blue";
+          barTwo.style.backgroundColor = "blue";
+        }, speed);
+      }, i * speed);
+    }
+    setTimeout(() => {
+      for (let j = 0; j < bars.length; j++) {
+        setTimeout(() => {
+          bars[j].style.backgroundColor = "green";
+        }, j * speed);
+      }
+      setIsSorting(false);
     }, animations.length * speed);
   };
 

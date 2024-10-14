@@ -14,14 +14,16 @@ function App() {
 
   useEffect(() => {
     const arr = userInput?.split(',');
-    const integerArray = arr?.filter(item => !isNaN(item) && Number.isInteger(parseFloat(item))).map(item => Number(item));
-    if (integerArray && integerArray.length > 0) setArray(integerArray);
+    const integerArray = arr?.filter(item => !isNaN(item) && Number.isInteger(parseFloat(item))).map(item => Number(item) <= 500 && Number(item));
+    if (integerArray && integerArray.length > 0) {
+      setArray(integerArray);
+    }
   }, [userInput]);
 
-  const generateArray = (size = 30) => {
+  const generateArray = () => {
     if (isSorting) return;
-    const newArray = Array.from({ length: size }, () =>
-      Math.floor(Math.random() * 500)
+    const newArray = Array.from({ length: 30 }, () =>
+      Math.floor(Math.random() * (500 - 50 + 1)) + 50
     );
     setUserInput('');
     setArray(newArray);
@@ -109,7 +111,7 @@ function App() {
           bars[j].style.backgroundColor = "green";
         }, j * speed);
       }
-    }, animations.length * speed);
+    }, animations.length * speed + speed);
   };
   const animateSelectionSorting = (animations) => {
     const bars = document.getElementsByClassName("bar");
@@ -153,6 +155,7 @@ function App() {
         isSorting={isSorting}
         setUserInput={setUserInput}
         userInput={userInput}
+        speed={speed}
       />
       <Visualizer array={array} />
     </div>

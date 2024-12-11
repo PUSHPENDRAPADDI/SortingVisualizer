@@ -49,7 +49,7 @@ function App() {
         break;
     }
   };
-  const animateMergeSorting = (animations) => {
+  const animateMergeSorting = (animations) => {    
     const bars = document.getElementsByClassName("bar");
     for (let i = 0; i < animations.length; i++) {
       const isColorChange = i % 3 !== 2;

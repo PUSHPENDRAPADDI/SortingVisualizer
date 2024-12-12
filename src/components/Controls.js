@@ -17,8 +17,8 @@ const Controls = ({speed, generateArray, startSort, setSpeed, isSorting, userInp
             <select onChange={(e) => startSort(e.target.value)} disabled={isSorting} className="neumorphism-dropdown">
                 <option value="">Select Sorting Method</option>
                 <option value="bubbleSort">Bubble Sort</option>
-                {/* <option value="mergeSort">Merge Sort</option>
-                <option value="selectionSort">SelectionSort Sort</option> */}
+                <option value="mergeSort">Merge Sort</option>
+                <option value="selectionSort">SelectionSort Sort</option>
             </select>
             <label>
                 Speed:

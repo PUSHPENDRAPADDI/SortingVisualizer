@@ -46,3 +46,9 @@ Benefits of using this project:
 Learning tool: Students and educators can use this project to learn and teach sorting algorithms in a visual and interactive way.
 Problem-solving aid: Developers can use this project to visualize and understand different sorting algorithms for their own projects.
 Curiosity satisfaction: Anyone interested in computer science can explore and experiment with various sorting algorithms.
+
+
+![image](https://github.com/user-attachments/assets/4ccf745a-c563-4cb2-b31a-2bf2acaaa9d9)
+
+![image](https://github.com/user-attachments/assets/80e89074-d66f-4f37-9662-473223a5dcc5)
+

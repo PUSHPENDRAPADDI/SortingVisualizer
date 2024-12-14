@@ -28,6 +28,9 @@ function App() {
     setUserInput('');
     setArray(newArray);
   };
+  const reSet = () => {
+    setArray([])
+  };
   const startSort = (algorithm) => {
     if (isSorting) return;
     let animations = [];
@@ -152,6 +155,7 @@ function App() {
         generateArray={generateArray}
         startSort={startSort}
         setSpeed={setSpeed}
+        reSet={reSet}
         isSorting={isSorting}
         setUserInput={setUserInput}
         userInput={userInput}

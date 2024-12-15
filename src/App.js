@@ -10,7 +10,8 @@ function App() {
   const [array, setArray] = useState([]);
   const [isSorting, setIsSorting] = useState(false);
   const [speed, setSpeed] = useState(100);
-  const [userInput, setUserInput] = useState();
+  const [userInput, setUserInput] = useState('');
+  const [selectedSorting, setSelectedSorting] = useState('');
 
   useEffect(() => {
     const arr = userInput?.split(',');
@@ -30,10 +31,12 @@ function App() {
   };
   const reSet = () => {
     setArray([])
+    setSelectedSorting('')
   };
   const startSort = (algorithm) => {
     if (isSorting) return;
     let animations = [];
+    setSelectedSorting(algorithm);
     setIsSorting(true);
     switch (algorithm) {
       case "bubbleSort":
@@ -74,14 +77,13 @@ function App() {
         }, i * speed);
       }
     }
-
     setTimeout(() => {
-      setIsSorting(false);
       for (let j = 0; j < bars.length; j++) {
         setTimeout(() => {
           bars[j].style.backgroundColor = "green";
         }, j * speed);
       }
+      setIsSorting(false);
     }, animations.length * speed);
   };
   const animateSorting = (animations) => {
@@ -114,6 +116,7 @@ function App() {
           bars[j].style.backgroundColor = "green";
         }, j * speed);
       }
+      setIsSorting(false);
     }, animations.length * speed + speed);
   };
   const animateSelectionSorting = (animations) => {
@@ -160,6 +163,7 @@ function App() {
         setUserInput={setUserInput}
         userInput={userInput}
         speed={speed}
+        selectedSorting={selectedSorting}
       />
       <Visualizer array={array} />
     </div>
